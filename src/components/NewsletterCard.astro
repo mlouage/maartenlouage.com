@@ -1,0 +1,18 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  subscribers: number;
+  image: string;
+}
+
+const { title, description, subscribers, image } = Astro.props;
+---
+<div class="bg-white rounded-lg shadow-md overflow-hidden">
+  <img src={image} alt={title} class="w-full h-32 object-cover">
+  <div class="p-4">
+    <h3 class="text-lg font-semibold mb-2">{title}</h3>
+    <p class="text-sm text-gray-600 mb-2">{description}</p>
+    <p class="text-xs text-gray-500">{subscribers.toLocaleString()} subscribers</p>
+  </div>
+</div>
