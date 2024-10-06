@@ -1,67 +1,69 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import NewsletterCard from '../components/NewsletterCard.astro';
 
-const featuredNewsletters = [
-  { title: "The DevOps Handbook", description: "Weekly guide to mastering DevOps", subscribers: 5500, image: "/images/devops.jpg" },
-  { title: "Fullstack Roadmap", description: "Learn how to become a fullstack developer", subscribers: 3200, image: "/images/fullstack.jpg" },
-  { title: "Machine Learning 101", description: "Understand the basics of machine learning", subscribers: 7800, image: "/images/ml.jpg" },
-  { title: "JavaScript Weekly", description: "Stay up to date with the latest in JavaScript", subscribers: 12300, image: "/images/js.jpg" },
-  { title: "Web3 Explained", description: "A beginner's guide to Web3", subscribers: 9100, image: "/images/web3.jpg" },
-];
-
-const trendingNewsletters = [
-  { title: "Productive Developer", description: "Boost your coding productivity", subscribers: 4800, image: "/images/productivity.jpg" },
-  { title: "GraphQL Deep Dive", description: "Master the ins and outs of GraphQL", subscribers: 6200, image: "/images/graphql.jpg" },
-  { title: "Design Patterns Explained", description: "Learn the most common design patterns", subscribers: 2300, image: "/images/design-patterns.jpg" },
-  { title: "React Performance Tips", description: "Optimize your React applications", subscribers: 8100, image: "/images/react.jpg" },
-  { title: "API Integration Guide", description: "Get started with API integrations", subscribers: 5400, image: "/images/api.jpg" },
-];
-
-const moreNewsletters = [
-  { title: "Tech Leadership Insights", description: "Expert advice for tech leaders", subscribers: 3600, image: "/images/leadership.jpg" },
-  { title: "Python Mastery Course", description: "Comprehensive Python programming course", subscribers: 9500, image: "/images/python.jpg" },
-  { title: "Docker for Beginners", description: "Learn the basics of Docker containerization", subscribers: 1700, image: "/images/docker.jpg" },
-  { title: "Vue.js Component Library", description: "Build reusable UI components with Vue.js", subscribers: 7300, image: "/images/vue.jpg" },
-  { title: "Serverless Fundamentals", description: "Understand the core concepts of serverless architecture", subscribers: 4200, image: "/images/serverless.jpg" },
-];
+const allArticles = await getCollection('articles');
+const featuredArticles = allArticles.filter(article => article.data.category === 'featured');
+const trendingArticles = allArticles.filter(article => article.data.category === 'trending');
+const moreArticles = allArticles.filter(article => article.data.category === 'more');
 ---
 
 <Layout title="Dev Digest - The best software engineering newsletters">
   <main class="container mx-auto px-4 py-8">
     <section class="mb-12">
-      <div class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-8 text-white">
+      <div class="bg-gradient-to-r from-purple-500 to-indigo-600 dark:from-purple-700 dark:to-indigo-800 rounded-lg text-white p-12 mb-8">
         <h1 class="text-4xl font-bold mb-4">The best software engineering newsletters in one place</h1>
-        <div class="flex">
-          <input type="text" placeholder="Search for a newsletter" class="flex-grow rounded-l-md px-4 py-2 text-gray-800">
-          <button class="bg-accent text-white px-6 py-2 rounded-r-md">Go</button>
+        <div class="max-w-xl">
+          <div class="relative">
+            <input type="text" placeholder="Search for a newsletter" class="w-full pl-10 pr-4 py-2 rounded-full text-gray-900 dark:text-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <button class="absolute right-2 top-2 bg-blue-500 text-white px-4 py-1 rounded-full hover:bg-blue-600 transition duration-300">Go</button>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 dark:text-gray-400 absolute left-3 top-3" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+            </svg>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="mb-12">
-      <h2 class="text-2xl font-bold mb-4">Featured Newsletters</h2>
+      <h2 class="text-2xl font-bold mb-6 dark:text-white">Featured Newsletters</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-        {featuredNewsletters.map(newsletter => (
-          <NewsletterCard {...newsletter} />
+        {featuredArticles.map(article => (
+          <NewsletterCard
+            title={article.data.title}
+            description={article.data.description}
+            subscribers={article.data.subscribers}
+            imageUrl={article.data.imageUrl}
+          />
         ))}
       </div>
     </section>
 
     <section class="mb-12">
-      <h2 class="text-2xl font-bold mb-4">Trending</h2>
+      <h2 class="text-2xl font-bold mb-6 dark:text-white">Trending</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-        {trendingNewsletters.map(newsletter => (
-          <NewsletterCard {...newsletter} />
+        {trendingArticles.map(article => (
+          <NewsletterCard
+            title={article.data.title}
+            description={article.data.description}
+            subscribers={article.data.subscribers}
+            imageUrl={article.data.imageUrl}
+          />
         ))}
       </div>
     </section>
 
     <section>
-      <h2 class="text-2xl font-bold mb-4">More from Dev Digest</h2>
+      <h2 class="text-2xl font-bold mb-6 dark:text-white">More from Dev Digest</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-        {moreNewsletters.map(newsletter => (
-          <NewsletterCard {...newsletter} />
+        {moreArticles.map(article => (
+          <NewsletterCard
+            title={article.data.title}
+            description={article.data.description}
+            subscribers={article.data.subscribers}
+            imageUrl={article.data.imageUrl}
+          />
         ))}
       </div>
     </section>
