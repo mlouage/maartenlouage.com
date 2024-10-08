@@ -7,7 +7,7 @@ const articleCollection = defineCollection({
     description: z.string(),
     subscribers: z.string(),
     imageUrl: z.string(),
-    category: z.enum(['featured', 'trending', 'more']),
+    category: z.enum(['featured', 'trending', 'more', 'for_you']),
     publishDate: z.date(),
   }),
 });

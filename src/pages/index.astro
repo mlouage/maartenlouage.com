@@ -2,8 +2,10 @@
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import NewsletterCard from '../components/NewsletterCard.astro';
+import ArticleSlider from '../components/ArticleSlider.astro';
 
 const allArticles = await getCollection('articles');
+const forYouArticles = allArticles.filter(article => article.data.category === 'for_you');
 const featuredArticles = allArticles.filter(article => article.data.category === 'featured');
 const trendingArticles = allArticles.filter(article => article.data.category === 'trending');
 const moreArticles = allArticles.filter(article => article.data.category === 'more');
@@ -16,9 +18,9 @@ const moreArticles = allArticles.filter(article => article.data.category === 'mo
         <h1 class="text-4xl font-bold mb-4">The best software engineering newsletters in one place</h1>
         <div class="max-w-xl">
           <div class="relative">
-            <input type="text" placeholder="Search for a newsletter" class="w-full pl-10 pr-4 py-2 rounded-full text-gray-900 dark:text-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <button class="absolute right-2 top-2 bg-blue-500 text-white px-4 py-1 rounded-full hover:bg-blue-600 transition duration-300">Go</button>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 dark:text-gray-400 absolute left-3 top-3" viewBox="0 0 20 20" fill="currentColor">
+            <input type="text" placeholder="Search for a newsletter" class="w-full pl-10 pr-20 py-2 rounded-full text-gray-900 dark:text-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <button class="absolute right-1 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white px-4 py-1 rounded-full hover:bg-blue-600 transition duration-300">Go</button>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 dark:text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
             </svg>
           </div>
@@ -26,46 +28,9 @@ const moreArticles = allArticles.filter(article => article.data.category === 'mo
       </div>
     </section>
 
-    <section class="mb-12">
-      <h2 class="text-2xl font-bold mb-6 dark:text-white">Featured Newsletters</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-        {featuredArticles.map(article => (
-          <NewsletterCard
-            title={article.data.title}
-            description={article.data.description}
-            subscribers={article.data.subscribers}
-            imageUrl={article.data.imageUrl}
-          />
-        ))}
-      </div>
-    </section>
-
-    <section class="mb-12">
-      <h2 class="text-2xl font-bold mb-6 dark:text-white">Trending</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-        {trendingArticles.map(article => (
-          <NewsletterCard
-            title={article.data.title}
-            description={article.data.description}
-            subscribers={article.data.subscribers}
-            imageUrl={article.data.imageUrl}
-          />
-        ))}
-      </div>
-    </section>
-
-    <section>
-      <h2 class="text-2xl font-bold mb-6 dark:text-white">More from Dev Digest</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-        {moreArticles.map(article => (
-          <NewsletterCard
-            title={article.data.title}
-            description={article.data.description}
-            subscribers={article.data.subscribers}
-            imageUrl={article.data.imageUrl}
-          />
-        ))}
-      </div>
-    </section>
+    <ArticleSlider title="For You" articles={forYouArticles} />
+    <ArticleSlider title="Featured Newsletters" articles={featuredArticles} />
+    <ArticleSlider title="Trending" articles={trendingArticles} />
+    <ArticleSlider title="More from Dev Digest" articles={moreArticles} />
   </main>
 </Layout>
