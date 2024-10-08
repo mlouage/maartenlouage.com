@@ -1,34 +1,94 @@
 ---
+
 ---
+
 <header class="bg-white dark:bg-gray-800 shadow-sm">
   <div class="container mx-auto px-4 py-4 flex items-center justify-between">
     <div class="flex items-center space-x-4">
       <a href="/" class="text-xl font-bold dark:text-white">🌟 Dev Digest</a>
       <nav>
         <ul class="flex space-x-4">
-          <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Featured</a></li>
-          <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Trending</a></li>
-          <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">For You</a></li>
-          <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Become a Sponsor</a></li>
+          <li>
+            <a
+              href="#"
+              class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+              >Featured</a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+              >Trending</a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+              >For You</a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+              >Become a Sponsor</a>
+          </li>
         </ul>
       </nav>
     </div>
     <div class="flex items-center space-x-4">
       <div class="relative">
-        <input type="text" placeholder="Search" class="pl-8 pr-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 dark:text-gray-300 absolute left-2 top-2.5" viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+        <input
+          type="text"
+          placeholder="Search"
+          class="pl-8 pr-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+        />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5 text-gray-400 dark:text-gray-300 absolute left-2 top-2.5"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+            clip-rule="evenodd"></path>
         </svg>
       </div>
-      <button class="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 transition duration-300">Write</button>
-      <button class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+      <button
+        class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+          ></path>
         </svg>
       </button>
-      <button id="darkModeToggle" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+      <button
+        id="darkModeToggle"
+        class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+          ></path>
         </svg>
       </button>
       <div class="w-8 h-8 bg-gray-300 dark:bg-gray-600 rounded-full"></div>
@@ -37,15 +97,15 @@
 </header>
 
 <script>
-  const darkModeToggle = document.getElementById('darkModeToggle');
+  const darkModeToggle = document.getElementById("darkModeToggle");
   const html = document.documentElement;
 
-  darkModeToggle.addEventListener('click', () => {
-    html.classList.toggle('dark');
-    if (html.classList.contains('dark')) {
-      localStorage.theme = 'dark';
+  darkModeToggle.addEventListener("click", () => {
+    html.classList.toggle("dark");
+    if (html.classList.contains("dark")) {
+      localStorage.theme = "dark";
     } else {
-      localStorage.theme = 'light';
+      localStorage.theme = "light";
     }
   });
 </script>

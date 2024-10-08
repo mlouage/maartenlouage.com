@@ -1,28 +1,43 @@
 ---
-import { getCollection } from 'astro:content';
-import Layout from '../layouts/Layout.astro';
-import NewsletterCard from '../components/NewsletterCard.astro';
-import ArticleSlider from '../components/ArticleSlider.astro';
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import ArticleSlider from "../components/ArticleSlider.astro";
 
-const allArticles = await getCollection('articles');
-const forYouArticles = allArticles.filter(article => article.data.category === 'for_you');
-const featuredArticles = allArticles.filter(article => article.data.category === 'featured');
-const trendingArticles = allArticles.filter(article => article.data.category === 'trending');
-const moreArticles = allArticles.filter(article => article.data.category === 'more');
+const allArticles = await getCollection("articles");
+const forYouArticles = allArticles.filter(
+  (article) => article.data.category === "for_you"
+);
+const featuredArticles = allArticles.filter(
+  (article) => article.data.category === "featured"
+);
+const trendingArticles = allArticles.filter(
+  (article) => article.data.category === "trending"
+);
+const moreArticles = allArticles.filter(
+  (article) => article.data.category === "more"
+);
 ---
 
 <Layout title="Dev Digest - The best software engineering newsletters">
   <main class="container mx-auto px-4 py-8">
     <section class="mb-12">
-      <div class="bg-gradient-to-r from-purple-500 to-indigo-600 dark:from-purple-700 dark:to-indigo-800 rounded-lg text-white p-12 mb-8">
-        <h1 class="text-4xl font-bold mb-4">The best software engineering newsletters in one place</h1>
+      <div
+        class="bg-gradient-to-r from-purple-500 to-indigo-600 dark:from-purple-700 dark:to-indigo-800 rounded-lg text-gray-200 p-12 mb-8 min-h-96 flex flex-col justify-center items-center"
+      >
+        <h1 class="text-4xl font-bold mb-16">
+          The best software engineering newsletters in one place
+        </h1>
         <div class="max-w-xl">
           <div class="relative">
-            <input type="text" placeholder="Search for a newsletter" class="w-full pl-10 pr-20 py-2 rounded-full text-gray-900 dark:text-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <button class="absolute right-1 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white px-4 py-1 rounded-full hover:bg-blue-600 transition duration-300">Go</button>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 dark:text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-            </svg>
+            <input
+              type="email"
+              placeholder="E-mail address"
+              class="w-full pl-10 pr-20 py-2 rounded-full text-gray-900 dark:text-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <button
+              class="absolute right-1 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white px-4 py-1 rounded-full hover:bg-blue-600 transition duration-300"
+              >Subscribe</button
+            >
           </div>
         </div>
       </div>
