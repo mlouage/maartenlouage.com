@@ -1,5 +1,5 @@
 ---
-import NewsletterCard from './NewsletterCard.astro';
+import NewsletterCard from "./NewsletterCard.astro";
 
 interface Props {
   title: string;
@@ -12,26 +12,52 @@ const { title, articles } = Astro.props;
 <section class="mb-12">
   <h2 class="text-2xl font-bold mb-6 dark:text-white">{title}</h2>
   <div class="relative article-slider-container">
-    <button class="scroll-button left-button absolute left-0 top-1/2 transform -translate-y-1/2 bg-white dark:bg-gray-800 p-2 rounded-full shadow-md z-10">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    <button
+      class="scroll-button left-button absolute left-0 top-1/2 transform -translate-y-1/2 bg-white dark:bg-gray-800 p-2 rounded-full shadow-md z-10"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M15 19l-7-7 7-7"></path>
       </svg>
     </button>
     <div class="article-slider overflow-x-auto whitespace-nowrap pb-4">
-      {articles.map(article => (
-        <div class="inline-block w-64 mr-4">
-          <NewsletterCard
-            title={article.data.title}
-            description={article.data.description}
-            subscribers={article.data.subscribers}
-            imageUrl={article.data.imageUrl}
-          />
-        </div>
-      ))}
+      {
+        articles.map((article) => (
+          <div class="inline-block w-64 mr-4">
+            <NewsletterCard
+              title={article.data.title}
+              description={article.data.description}
+              subscribers={article.data.subscribers}
+              imageUrl={article.data.imageUrl}
+            />
+          </div>
+        ))
+      }
     </div>
-    <button class="scroll-button right-button absolute right-0 top-1/2 transform -translate-y-1/2 bg-white dark:bg-gray-800 p-2 rounded-full shadow-md z-10">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    <button
+      class="scroll-button right-button absolute right-0 top-1/2 transform -translate-y-1/2 bg-white dark:bg-gray-800 p-2 rounded-full shadow-md z-10"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M9 5l7 7-7 7"></path>
       </svg>
     </button>
   </div>
@@ -48,7 +74,6 @@ const { title, articles } = Astro.props;
   .scroll-button {
     opacity: 0.7;
     transition: opacity 0.3s;
-    display: none;
   }
   .scroll-button:hover {
     opacity: 1;
@@ -57,39 +82,55 @@ const { title, articles } = Astro.props;
 
 <script>
   function setupSlider(sliderContainer) {
-    const slider = sliderContainer.querySelector('.article-slider');
-    const leftButton = sliderContainer.querySelector('.left-button');
-    const rightButton = sliderContainer.querySelector('.right-button');
+    const slider = sliderContainer.querySelector(".article-slider");
+    const leftButton = sliderContainer.querySelector(".left-button");
+    const rightButton = sliderContainer.querySelector(".right-button");
 
     function updateButtonVisibility() {
       const isScrollable = slider.scrollWidth > slider.clientWidth;
       const isAtStart = slider.scrollLeft <= 0;
-      const isAtEnd = slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 1;
+      const isAtEnd =
+        slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 1;
 
-      leftButton.style.display = isScrollable && !isAtStart ? 'block' : 'none';
-      rightButton.style.display = isScrollable && !isAtEnd ? 'block' : 'none';
+      leftButton.style.display = isScrollable && !isAtStart ? "block" : "none";
+      rightButton.style.display = isScrollable && !isAtEnd ? "block" : "none";
     }
 
     function scrollSlider(direction) {
       const scrollAmount = slider.clientWidth * 0.8;
       slider.scrollBy({
         left: direction * scrollAmount,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
 
-    leftButton.addEventListener('click', () => scrollSlider(-1));
-    rightButton.addEventListener('click', () => scrollSlider(1));
+    leftButton.addEventListener("click", () => scrollSlider(-1));
+    rightButton.addEventListener("click", () => scrollSlider(1));
 
-    slider.addEventListener('scroll', updateButtonVisibility);
-    window.addEventListener('resize', updateButtonVisibility);
+    slider.addEventListener("scroll", updateButtonVisibility);
+    window.addEventListener("resize", updateButtonVisibility);
+
+    // Force layout recalculation
+    slider.offsetHeight;
 
     // Initial check
     updateButtonVisibility();
+
+    // Additional check after a short delay
+    setTimeout(updateButtonVisibility, 100);
+  }
+
+  function initSliders() {
+    document.querySelectorAll(".article-slider-container").forEach(setupSlider);
   }
 
   // Setup all sliders on page load
-  document.addEventListener('astro:page-load', () => {
-    document.querySelectorAll('.article-slider-container').forEach(setupSlider);
-  });
+  document.addEventListener("astro:page-load", initSliders);
+
+  // Backup initialization
+  if (document.readyState === "complete") {
+    initSliders();
+  } else {
+    window.addEventListener("load", initSliders);
+  }
 </script>
